@@ -36,12 +36,7 @@ public class RoomResource {
     @DELETE
     @Path("/{id}")
     public String deleteRoom(@PathParam("id") String id) {
-        boolean removed = roomService.deleteRoom(id);
-
-        if (removed) {
-            return "{ \"message\": \"Room deleted\" }";
-        } else {
-            return "{ \"error\": \"Room not found\" }";
-        }
+        roomService.deleteRoom(id);
+        return "{ \"message\": \"Room deleted successfully\" }";
     }
 }

@@ -12,6 +12,7 @@ import org.glassfish.jersey.jackson.JacksonFeature;
 
 import com.semika.smartcampusapi.resources.DiscoveryResource;
 import com.semika.smartcampusapi.resources.RoomResource;
+import com.semika.smartcampusapi.resources.SensorResource;
 
 public class SmartCampusAPI {
 
@@ -23,6 +24,7 @@ public class SmartCampusAPI {
                 .register(DiscoveryResource.class)
                 .register(RoomResource.class)
                 .register(JacksonFeature.class)
+                .register(SensorResource.class)
                 
                 .packages("com.semika.smartcampusapi");
 
