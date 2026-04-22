@@ -196,6 +196,7 @@ In this implementation, DELETE is not fully idempotent because attempting to del
 According to REST principles, DELETE should be idempotent, meaning multiple identical requests should produce the same outcome. Whether the resource existed or not, the final state is the same — the room is absent.
 
 To improve idempotency, the API should return a 404 Not Found or even a 204 No Content without error when the room does not exist, ensuring consistent behaviour across repeated requests.
+
 ---
 
 ### Part 3.1 — Effect of Mismatched Content-Type with @Consumes
