@@ -4,6 +4,7 @@
  */
 package com.semika.smartcampusapi.services;
 
+import com.semika.smartcampusapi.exceptions.LinkedResourceNotFoundException;
 import com.semika.smartcampusapi.models.Room;
 import com.semika.smartcampusapi.models.Sensor;
 import java.util.*;
@@ -19,7 +20,9 @@ public class SensorService {
         Room room = roomService.getRoom(sensor.getRoomId());
 
         if (room == null) {
-            throw new RuntimeException("Room does not exist");
+            throw new LinkedResourceNotFoundException(
+                "Room with id '" + sensor.getRoomId() + "' does not exist."
+            );
         }
 
         sensors.put(sensor.getId(), sensor);
@@ -32,5 +35,9 @@ public class SensorService {
 
     public List<Sensor> getAllSensors() {
         return new ArrayList<>(sensors.values());
+    }
+    
+    public Sensor getSensorById(String id) {
+        return sensors.get(id);
     }
 }

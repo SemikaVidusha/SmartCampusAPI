@@ -4,6 +4,7 @@
  */
 package com.semika.smartcampusapi.services;
 
+import com.semika.smartcampusapi.exceptions.RoomNotEmptyException;
 import com.semika.smartcampusapi.models.Room;
 import java.util.*;
 
@@ -32,7 +33,7 @@ public class RoomService {
         }
 
         if (!room.getSensorIds().isEmpty()) {
-            throw new RuntimeException("Room has sensors, cannot delete");
+            throw new RoomNotEmptyException(id);
         }
 
         rooms.remove(id);

@@ -13,6 +13,10 @@ import org.glassfish.jersey.jackson.JacksonFeature;
 import com.semika.smartcampusapi.resources.DiscoveryResource;
 import com.semika.smartcampusapi.resources.RoomResource;
 import com.semika.smartcampusapi.resources.SensorResource;
+import com.semika.smartcampusapi.exceptions.GlobalExceptionMapper;
+import com.semika.smartcampusapi.exceptions.RoomNotEmptyExceptionMapper;
+import com.semika.smartcampusapi.exceptions.LinkedResourceNotFoundExceptionMapper;
+import com.semika.smartcampusapi.exceptions.SensorUnavailableExceptionMapper;
 
 public class SmartCampusAPI {
 
@@ -20,13 +24,14 @@ public class SmartCampusAPI {
 
     public static HttpServer startServer() {
         final ResourceConfig config = new ResourceConfig()
-                
-                .register(DiscoveryResource.class)
-                .register(RoomResource.class)
-                .register(JacksonFeature.class)
-                .register(SensorResource.class)
-                
-                .packages("com.semika.smartcampusapi");
+            .register(DiscoveryResource.class)
+            .register(RoomResource.class)
+            .register(SensorResource.class)
+            .register(JacksonFeature.class)
+            .register(SensorUnavailableExceptionMapper.class)
+            .register(RoomNotEmptyExceptionMapper.class)
+            .register(LinkedResourceNotFoundExceptionMapper.class)
+            .register(GlobalExceptionMapper.class);
 
         return GrizzlyHttpServerFactory.createHttpServer(URI.create(BASE_URI), config);
     }

@@ -26,4 +26,8 @@ public class SensorResource {
     public List<Sensor> getSensors() {
         return sensorService.getAllSensors();
     }
+    @Path("/{id}/readings")
+    public SensorReadingResource getReadingResource(@PathParam("id") String id) {
+        return new SensorReadingResource(id);
+    }
 }
